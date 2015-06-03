@@ -1,11 +1,14 @@
 package com.prototype;
 
+import java.net.URL;
+
 public class CurrencyDescriptor
 {
 	private String name;
 	private String symbol;
 	private Double exchangeRate;
 	private String upOrDownRate;
+	private URL linkToCurrency;
 	
 	public String getName() 
 	{
@@ -47,10 +50,21 @@ public class CurrencyDescriptor
 		this.upOrDownRate = upOrDownRate;
 	}
 	
+	public URL getLinkToCurrency()
+	{
+		return linkToCurrency;
+	}
+
+	public void setLinkToCurrency(URL linkToCurrency)
+	{
+		this.linkToCurrency = linkToCurrency;
+	}
+
 	@Override
 	public String toString()
 	{
-		return "Waluta: "+name+" symbol: "+symbol+" kurs: "+exchangeRate+" upDownRate: "+upOrDownRate;
+		return "Waluta: "+name+" symbol: "+symbol+" kurs: "+exchangeRate+" upDownRate: "+upOrDownRate
+				+" link: "+linkToCurrency;
 		
 	}
 }

@@ -1,6 +1,7 @@
 package com.prototype;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class CurrenyHTMLParser
 			
 			CurrencyDescriptor currentCurrency = new CurrencyDescriptor();
 			currentCurrency.setName(currencyCells.get(0).text());
+			currentCurrency.setLinkToCurrency(new URL(currencyCells.get(0).select("a").attr("href")));
 			currentCurrency.setSymbol(currencyCells.get(1).text());
 			currentCurrency.setExchangeRate(Double.parseDouble(currencyCells.get(2).text().replace(",", ".")));
 			currentCurrency.setUpOrDownRate(currencyCells.get(3).text());			
