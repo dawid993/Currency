@@ -15,8 +15,6 @@ public class CurrencyDescriptor
 	
 	private static final String exceptionMessage = "Input Error. Perhaps HTML parsing was change";
 	
-	
-	
 	public String getName() 
 	{
 		return name;

@@ -61,27 +61,4 @@ public class CurrencyParser
 		
 		return listOfCurrency;
 	}
-	
-	
-	/**
-	 * Test
-	 * @param args
-	 */
-	public static void main(String[] args) 
-	{
-		CurrencyParser parser = new CurrencyParser();
-		parser.setSourceURL("http://kursy-walut.mybank.pl");
-		
-		try
-		{
-			parser.parseCurrency();			
-			for(CurrencyDescriptor descriptor:parser.getListOfCurrency())
-				System.out.println(descriptor);
-		}
-		catch(IOException exception)
-		{
-			exception.printStackTrace();
-			System.exit(0);
-		}
-	}
 }
