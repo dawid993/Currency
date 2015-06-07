@@ -37,6 +37,7 @@ public class CurrencyDAOImp implements CurrencyDAO
 		return (Currency) query.list().get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Currency> getCurrencies() 
 	{

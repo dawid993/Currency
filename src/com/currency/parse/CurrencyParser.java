@@ -37,9 +37,11 @@ public class CurrencyParser
 		CurrencyDescriptor currentCurrency = new CurrencyDescriptor();
 		currentCurrency.setName(currencyCell.get(0).text());
 		currentCurrency.setLinkToCurrency(currencyCell.get(0).select("a").attr("href"));
-		currentCurrency.setSymbol(currencyCell.get(1).text());
+		currentCurrency.setSymbol(currencyCell.get(1).text());		
 		currentCurrency.setExchangeRate(currencyCell.get(2).text().replace(",", "."));
-		currentCurrency.setUpOrDownRate(currencyCell.get(3).text());		
+		
+		String prefixBeforeUpOrDownRate = specifyPrefix(currencyCell.get(3).attr("class"));
+		currentCurrency.setUpOrDownRate(prefixBeforeUpOrDownRate+currencyCell.get(3).text());		
 		
 		return currentCurrency;
 	}
@@ -62,26 +64,12 @@ public class CurrencyParser
 		return listOfCurrency;
 	}
 	
-	
-	/**
-	 * Test
-	 * @param args
-	 */
-	public static void main(String[] args) 
+	private String specifyPrefix(String token)
 	{
-		CurrencyParser parser = new CurrencyParser();
-		parser.setSourceURL("http://kursy-walut.mybank.pl");
-		
-		try
-		{
-			parser.parseCurrency();			
-			for(CurrencyDescriptor descriptor:parser.getListOfCurrency())
-				System.out.println(descriptor);
-		}
-		catch(IOException exception)
-		{
-			exception.printStackTrace();
-			System.exit(0);
-		}
+		if(token.contains("down"))
+			return "-";
+		else
+			return "";
 	}
+	
 }
