@@ -3,8 +3,6 @@ package com.currency.parse;
 import java.io.IOException;
 import java.net.URL;
 
-import com.sun.org.glassfish.gmbal.Description;
-
 public class CurrencyDescriptor
 {
 	private String name;
@@ -95,12 +93,11 @@ public class CurrencyDescriptor
 	}
 	
 	/*
-	 * Methods below are unsupported
+	 * Methods below are unsupported. 
+	 * Must be implemented in subclass
 	 */
 	
-	@Description(value="This method can be implemented by subclass")
-	protected void setExchangeRate(Double exchangeRate){}
-	@Description(value="This method can be implemented by subclass")
+	protected void setExchangeRate(Double exchangeRate){}	
 	protected  void setLinkToCurrency(URL linkToCurrency){}
 
 }

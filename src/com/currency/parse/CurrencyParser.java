@@ -37,9 +37,11 @@ public class CurrencyParser
 		CurrencyDescriptor currentCurrency = new CurrencyDescriptor();
 		currentCurrency.setName(currencyCell.get(0).text());
 		currentCurrency.setLinkToCurrency(currencyCell.get(0).select("a").attr("href"));
-		currentCurrency.setSymbol(currencyCell.get(1).text());
+		currentCurrency.setSymbol(currencyCell.get(1).text());		
 		currentCurrency.setExchangeRate(currencyCell.get(2).text().replace(",", "."));
-		currentCurrency.setUpOrDownRate(currencyCell.get(3).text());		
+		
+		String prefixBeforeUpOrDownRate = specifyPrefix(currencyCell.get(3).attr("class"));
+		currentCurrency.setUpOrDownRate(prefixBeforeUpOrDownRate+currencyCell.get(3).text());		
 		
 		return currentCurrency;
 	}
@@ -60,5 +62,13 @@ public class CurrencyParser
 			return null;
 		
 		return listOfCurrency;
+	}
+
+	private String specifyPrefix(String token)
+	{
+		if(token.contains("down"))
+			return "-";
+		else
+			return "";
 	}
 }
