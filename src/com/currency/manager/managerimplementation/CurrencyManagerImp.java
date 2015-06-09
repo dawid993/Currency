@@ -32,9 +32,9 @@ public class CurrencyManagerImp implements CurrencyManager
 
 	@Override
 	@Transactional
-	public Currency getCurrency(String name) 
+	public Currency getCurrency(String symbol) 
 	{
-		return currencyDAO.getCurrency(name);
+		return currencyDAO.getCurrency(symbol);
 	}
 
 	@Override

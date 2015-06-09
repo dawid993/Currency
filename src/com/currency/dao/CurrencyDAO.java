@@ -10,7 +10,7 @@ public interface CurrencyDAO
 	
 	public Currency getCurrency(long id);
 	
-	public Currency getCurrency(String name);
+	public Currency getCurrency(String symbol);
 	
 	public List<Currency> getCurrencies();
 	

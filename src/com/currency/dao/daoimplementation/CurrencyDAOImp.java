@@ -30,11 +30,14 @@ public class CurrencyDAOImp implements CurrencyDAO
 	}
 
 	@Override
-	public Currency getCurrency(String name) 
+	public Currency getCurrency(String symbol) 
 	{		
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Currency WHERE name = :name");
-		query.setParameter("name", name);
-		return (Currency) query.list().get(0);
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Currency WHERE symbol = :symbol");
+		query.setParameter("symbol", symbol);
+		if(query.list().size() == 0)
+			return null;
+		else
+			return (Currency) query.list().get(0);
 	}
 
 	@SuppressWarnings("unchecked")

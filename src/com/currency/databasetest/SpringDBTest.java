@@ -13,44 +13,14 @@ import com.currency.model.Currency;
 import com.currency.model.CurrencyRate;
 import com.currency.parse.CurrencyDescriptor;
 import com.currency.parse.CurrencyParser;
+import com.currency.service.implementation.CurrencyService;
 
 public class SpringDBTest 
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
-		ApplicationContext context = new ClassPathXmlApplicationContext("springbean.xml");
-		CurrencyManager currencyManager = (CurrencyManager) context.getBean("currencyManagerImp");
-		
-		CurrencyParser parser = new CurrencyParser();
-		parser.setSourceURL("http://kursy-walut.mybank.pl");
-		
-		try
-		{
-			parser.parseCurrency();
-			for(CurrencyDescriptor descriptor:parser.getListOfCurrency())
-			{				
-				Currency currency = new Currency();
-				CurrencyRate currencyRate = new CurrencyRate();
-				
-				currency.setName(descriptor.getName());
-				currency.setSymbol(descriptor.getSymbol());
-				
-				currencyRate.setDate(new Date());
-				currencyRate.setBeforeRate(descriptor.getUpOrDownRate());
-				currencyRate.setRate(descriptor.getExchangeRate());
-				currencyRate.setCurrency(currency);
-				
-				Set<CurrencyRate> set = new HashSet<CurrencyRate>();
-				set.add(currencyRate);
-				
-				currency.setCurrencyRates(set);
-				
-				currencyManager.insertCurrency(currency);	
-			}
-		}
-		catch (IOException e) 
-		{			
-			e.printStackTrace();
-		}
+		CurrencyService service = new CurrencyService("http://127.0.0.1/kursy/kurs3.html");
+		service.fetchRateFromDedicatetSource();
+		service.updateCurrencyRate();
 	}
 }
