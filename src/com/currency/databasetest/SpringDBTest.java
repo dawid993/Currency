@@ -19,7 +19,7 @@ public class SpringDBTest
 {
 	public static void main(String[] args) throws IOException
 	{
-		CurrencyService service = new CurrencyService("http://127.0.0.1/kursy/kurs3.html");
+		CurrencyService service = new CurrencyService("http://kursy-walut.mybank.pl");
 		service.fetchRateFromDedicatetSource();
 		service.updateCurrencyRate();
 	}

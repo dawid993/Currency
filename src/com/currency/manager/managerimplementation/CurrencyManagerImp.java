@@ -10,7 +10,7 @@ import com.currency.dao.CurrencyDAO;
 import com.currency.manager.CurrencyManager;
 import com.currency.model.Currency;
 
-@Service
+@Service(value = "currencyManagerImp")
 public class CurrencyManagerImp implements CurrencyManager
 {
 	@Autowired
@@ -49,7 +49,5 @@ public class CurrencyManagerImp implements CurrencyManager
 	public void updateCurrency(Currency currency)
 	{
 		currencyDAO.updateCurrency(currency);		
-	}
-
-	
+	}	
 }

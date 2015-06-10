@@ -51,11 +51,9 @@ public class CurrencyService implements AbstractCurrencyService
 		if(currency == null)
 		{
 			currency = prepareCurrency(currencyDesc);	
-			rate.setCurrency(currency);
-			
+			rate.setCurrency(currency);			
 			Set<CurrencyRate> currenySet = new HashSet<CurrencyRate>();
-			currenySet.add(rate);
-			
+			currenySet.add(rate);			
 			currency.setCurrencyRates(currenySet);		
 			currencyManager.insertCurrency(currency);
 		}
@@ -85,6 +83,4 @@ public class CurrencyService implements AbstractCurrencyService
 		
 		return returnCurrency;
 	}
-
-
 }
